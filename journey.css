@@ -1,0 +1,352 @@
+/* ============================================================
+   五幕 shell —— 只加在 M0 的 styles.css 之上，不改 M0 本体。
+   ============================================================ */
+
+#acts {
+  position: fixed; inset: 0; z-index: 2;
+  pointer-events: none;
+}
+.act-layer {
+  position: absolute; inset: 0;
+  display: none;
+  pointer-events: auto;
+}
+.act-layer.on { display: block; }
+.act-layer canvas {
+  position: absolute; inset: 0;
+  display: block; width: 100%; height: 100%;
+}
+.act-layer .word-hit {
+  position: absolute;
+  z-index: 2;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
+.act-layer .word-hit:focus { outline: none; }
+
+#transLine {
+  position: fixed; inset: 0; z-index: 5;
+  display: none; width: 100%; height: 100%;
+  pointer-events: none;
+}
+
+#ui { z-index: 6; }
+
+#teaser, #replay { display: none !important; }
+
+/* ---------------- 章节文案 ---------------- */
+
+.chapter-copy {
+  position: fixed;
+  left: 8.5%;
+  top: 7%;
+  width: 44%;
+  z-index: 7;
+  color: var(--ink);
+  pointer-events: none;
+}
+.chapter-copy.off { display: none; }
+.chapter-copy[data-tone="bone"] { color: var(--bone); }
+
+.cc-kicker {
+  font: 400 9px/1.4 var(--sans);
+  letter-spacing: .24em;
+  opacity: .55;
+  margin-bottom: 14px;
+  writing-mode: horizontal-tb;
+}
+
+.cc-title {
+  display: inline-block;
+  vertical-align: top;
+  writing-mode: vertical-rl;
+  text-orientation: upright;
+  font: 500 clamp(52px, 10.8vw, 158px)/1.02 var(--serif);
+  letter-spacing: .04em;
+}
+
+.chapter-copy[data-len="3"] .cc-title {
+  font-size: clamp(46px, 9.4vw, 136px);
+}
+
+.cc-body {
+  display: inline-block;
+  vertical-align: top;
+  writing-mode: vertical-rl;
+  text-orientation: upright;
+  font: 400 clamp(10px, 1.05vw, 12px)/1.9 var(--serif);
+  letter-spacing: .1em;
+  opacity: .8;
+  margin-left: clamp(14px, 2.2vw, 30px);
+  padding-top: 4px;
+  max-height: 56vh;
+}
+.cc-body p { margin: 0; }
+.cc-body p + p { margin-right: .6em; }
+
+.cc-layer { position: relative; }
+.cc-layer.cc-wet {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  color: var(--bone);
+  -webkit-filter: blur(0.4px);
+  filter: blur(0.4px);
+}
+.chapter-copy[data-tone="bone"] .cc-wet { color: var(--ink); }
+
+/* ---------------- 章节索引 ---------------- */
+
+.rail {
+  position: fixed;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 7;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  pointer-events: auto;
+}
+.rail-item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--ink);
+  opacity: .38;
+  cursor: pointer;
+  text-align: left;
+}
+.rail-item .ri-num {
+  font: 8px/1 var(--mono);
+  letter-spacing: .08em;
+  min-width: 15px;
+}
+.rail-item .ri-name {
+  font: 9px/1 var(--serif);
+  letter-spacing: .2em;
+  white-space: nowrap;
+  opacity: 0;
+  transform: translateX(-4px);
+  transition: opacity .25s, transform .25s;
+}
+.rail-item:hover .ri-name,
+.rail-item.on .ri-name {
+  opacity: .9;
+  transform: translateX(0);
+}
+.rail-item.on { opacity: 1; }
+.rail-item.on::before {
+  content: '';
+  position: absolute;
+  left: -9px; top: 50%;
+  width: 4px; height: 1px;
+  background: currentColor;
+  transform: translateY(-50%);
+}
+
+/* ---------------- 拾得 ---------------- */
+
+.found {
+  position: fixed;
+  right: 34px;
+  bottom: 122px;
+  z-index: 7;
+  color: var(--coral);
+  font: 400 9px/1.7 var(--mono);
+  letter-spacing: .14em;
+  opacity: 0;
+  transform: translateY(4px);
+  transition: opacity .45s, transform .45s;
+  pointer-events: none;
+}
+.found.show { opacity: 1; transform: translateY(0); }
+
+/* ---------------- 移动端 ---------------- */
+
+@media (max-width: 720px) {
+  .chapter-copy {
+    left: 7.5%;
+    top: 7%;
+    width: 57%;
+  }
+  .cc-kicker { font-size: 8px; margin-bottom: 10px; letter-spacing: .2em; }
+  .cc-title { font-size: clamp(40px, 11.6vw, 54px); }
+  .chapter-copy[data-len="3"] .cc-title { font-size: clamp(34px, 9.6vw, 44px); }
+  .cc-body {
+    font-size: 9.5px;
+    letter-spacing: .08em;
+    margin-left: 12px;
+    max-height: 46vh;
+  }
+  .rail { left: 9px; gap: 13px; }
+  .rail-item .ri-name { display: none; }
+  .rail-item.on .ri-name { display: none; }
+  .rail-item.on { opacity: 1; }
+  .found { right: 18px; bottom: 104px; font-size: 8px; }
+}
+
+/* ---------------- 降级 ---------------- */
+
+html.no-webgl #sea { display: none !important; }
+html.no-webgl #type { background: #03100F; }
+
+/* M0 的开场幕布退去后仍是全屏 div，会挡住 02/05 等 act 的 pointerdown */
+.veil.gone { pointer-events: none !important; }
+
+/* ---------------- 潮汐笺 ---------------- */
+
+.tidecard-ui {
+  position: fixed; inset: 0; z-index: 70;
+  display: none; align-items: center; justify-content: center;
+  padding: 22px;
+  background: rgba(3, 16, 15, .78);
+  -webkit-backdrop-filter: blur(2px);
+  backdrop-filter: blur(2px);
+}
+.tidecard-ui.on { display: flex; }
+
+.tc-panel {
+  display: flex; flex-direction: column; align-items: center;
+  gap: 16px; max-height: 100%;
+}
+.tc-paper {
+  display: flex; align-items: center; justify-content: center;
+  max-height: calc(100vh - 160px);
+}
+.tc-paper img {
+  display: block;
+  max-height: calc(100vh - 160px);
+  max-width: min(82vw, 560px);
+  width: auto; height: auto;
+  border: 1px solid rgba(242, 236, 223, .35);
+  background: #F2ECDF;
+}
+.tc-btns { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; }
+.tc-btns button, .tc-again {
+  font: 400 9px/1 var(--sans);
+  letter-spacing: .2em;
+  color: var(--bone);
+  background: none;
+  border: 1px solid rgba(242, 236, 223, .35);
+  padding: 8px 13px;
+  cursor: pointer;
+}
+.tc-btns button:hover, .tc-again:hover { border-color: var(--bone); }
+.tc-btns button:first-child { border-color: var(--coral); color: var(--coral); }
+.tc-again {
+  border: 0; padding: 0;
+  font-family: var(--serif);
+  font-size: 10px;
+  letter-spacing: .16em;
+  color: var(--bone);
+  opacity: .65;
+}
+
+body.tidecard-open .gate-btn { display: none !important; }
+
+/* ---------------- 大潮之门 ---------------- */
+
+.gate-btn {
+  position: fixed;
+  right: 34px;
+  bottom: 88px;
+  z-index: 7;
+  display: none;
+  align-items: center;
+  gap: 7px;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--bone);
+  cursor: pointer;
+  opacity: .72;
+}
+.gate-btn.show { display: flex; }
+.gate-btn:hover { opacity: 1; }
+.gb-seal {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 15px; height: 15px;
+  border: 1px solid rgba(216, 80, 58, .8);
+  color: var(--coral);
+  font: 500 7px/1 var(--serif);
+}
+.gb-word { font: 400 9px/1 var(--sans); letter-spacing: .22em; }
+
+.gate-ui {
+  position: fixed; inset: 0; z-index: 71;
+  display: none; align-items: center; justify-content: center;
+  padding: 22px;
+  background: rgba(3, 16, 15, .8);
+  -webkit-backdrop-filter: blur(2px);
+  backdrop-filter: blur(2px);
+}
+.gate-ui.on { display: flex; }
+.gate-card {
+  position: relative;
+  width: min(78vw, 340px);
+  padding: 30px 26px 24px;
+  border: 1px solid rgba(242, 236, 223, .35);
+  color: var(--bone);
+  text-align: left;
+}
+.gate-moon {
+  position: absolute;
+  top: 22px; right: 22px;
+  width: 26px; height: 26px;
+  border: 1px solid rgba(242, 236, 223, .35);
+  border-radius: 50%;
+}
+.gate-kicker {
+  font: 400 9px/1 var(--sans);
+  letter-spacing: .24em;
+  opacity: .55;
+  margin-bottom: 18px;
+}
+.gate-title { font: 500 28px/1.1 var(--serif); letter-spacing: .08em; }
+.gate-sub {
+  font: 400 7px/1 var(--mono);
+  letter-spacing: .18em;
+  opacity: .4;
+  margin-top: 8px;
+}
+.gate-body {
+  font: 400 12px/2 var(--serif);
+  letter-spacing: .06em;
+  margin-top: 22px;
+  opacity: .9;
+}
+.gate-body em { font-style: normal; color: var(--coral); }
+.gate-micro {
+  font: 400 8px/1.7 var(--sans);
+  letter-spacing: .12em;
+  opacity: .45;
+  margin-top: 12px;
+}
+.gate-push, .gate-close {
+  font: 400 9px/1 var(--sans);
+  letter-spacing: .2em;
+  color: var(--bone);
+  background: none;
+  border: 1px solid rgba(242, 236, 223, .35);
+  padding: 9px 16px;
+  margin-top: 24px;
+  cursor: pointer;
+}
+.gate-push { border-color: var(--coral); color: var(--coral); }
+.gate-close { margin-left: 8px; border: 0; padding: 9px 4px; opacity: .5; }
+
+body.gate-open .gate-btn { display: none !important; }
+
+@media (max-width: 720px) {
+  .gate-btn { right: 18px; bottom: 96px; }
+  .tc-paper img { max-height: calc(100vh - 190px); max-width: 86vw; }
+  .tc-btns button { padding: 7px 10px; font-size: 8px; }
+}

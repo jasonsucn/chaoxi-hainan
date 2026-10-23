@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#03100F">
+<meta name="description" content="潮汐书 · 海南 —— 一本被海反复擦掉的书。">
+<title>潮汐书 · 海南</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <canvas id="sea" aria-hidden="true"></canvas>
+  <canvas id="type" aria-hidden="true"></canvas>
+
+  <div class="sr-only">
+    <h1>潮汐书 · 海南</h1>
+    <p>一本被海反复擦掉的书。</p>
+    <p>你来得正是满潮。向下滚动，把海拉下去。</p>
+  </div>
+
+  <!-- 大字的文本源：由 Canvas 绘制，DOM 只负责内容与可访问性 -->
+  <div id="src" hidden>
+    <span data-kicker>你来得正是满潮</span>
+    <span data-title>潮汐书</span>
+    <span data-place>海南</span>
+    <span data-sub>一本被海反复擦掉的书</span>
+  </div>
+
+  <div class="ui" id="ui" aria-hidden="false">
+
+    <header class="top">
+      <a class="brand" href="#" aria-label="潮汐书 · 海南">
+        <span class="seal" aria-hidden="true">潮</span>
+        <span class="brand-copy">
+          <span class="cn">海南</span>
+          <span class="en">HAINAN · THE TIDE BOOK</span>
+        </span>
+      </a>
+      <div class="tools">
+        <button class="sound" id="sound" type="button" aria-pressed="false" aria-label="开启声音">
+          <span class="dot" aria-hidden="true"></span>
+          <span class="word">声音</span>
+          <span class="st" id="soundState">OFF</span>
+        </button>
+        <span class="vrule" aria-hidden="true"></span>
+        <span class="index">00 / 05</span>
+      </div>
+    </header>
+
+    <div class="gauge" id="gauge" aria-hidden="true">
+      <div class="gtrack"></div>
+      <div class="gmark" id="gmark">
+        <span class="gdot"></span>
+        <span class="gval" id="gval">+2.1</span>
+      </div>
+    </div>
+
+    <div class="teaser" id="teaser" aria-hidden="true">
+      <span class="tnum">01</span>
+      <span class="tname">玄武</span>
+      <span class="tline">最先露出来的不是沙，是火。</span>
+    </div>
+
+    <footer class="bottom">
+      <div class="readout">
+        <span class="pulse" aria-hidden="true"></span>
+        <div class="ro-copy">
+          <div class="state">
+            <span id="stateCN">满潮</span>
+            <span id="stateEN">HIGH WATER</span>
+          </div>
+          <div class="level">
+            <span id="level">+2.1 m</span>
+            <span class="sep">/</span>
+            <span id="clock">10:42</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hint" id="hint">
+        <span class="rail" aria-hidden="true"></span>
+        <span class="txt">向下，把海拉下去</span>
+        <span class="en">PULL THE SEA DOWN</span>
+      </div>
+
+      <div class="bottom-right">
+        <button class="replay" id="replay" type="button">回潮 <span aria-hidden="true">↻</span></button>
+      </div>
+    </footer>
+  </div>
+
+  <div class="veil" id="veil" aria-hidden="true"></div>
+
+  <noscript>
+    <div class="noscript">《潮汐书》需要 JavaScript 才能退潮。</div>
+  </noscript>
+
+  <script>
+    /* dev: 把运行时错误直接显示在页面上 */
+    window.addEventListener('error', function (e) {
+      var d = document.getElementById('err');
+      if (!d) {
+        d = document.createElement('pre');
+        d.id = 'err';
+        d.style.cssText = 'position:fixed;z-index:99;left:0;bottom:0;margin:0;padding:8px 10px;max-width:100%;white-space:pre-wrap;background:rgba(0,0,0,.82);color:#ff7a6a;font:11px/1.5 Consolas,monospace';
+        document.body.appendChild(d);
+      }
+      d.textContent += (e.message || String(e.error)) + '\n';
+    });
+  </script>
+  <script src="js/coast.js"></script>
+  <script src="js/sea.js"></script>
+  <script src="js/typewater.js"></script>
+  <script src="js/audio.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

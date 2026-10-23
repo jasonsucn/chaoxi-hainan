@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ACT01 STUDY · 390 × 844</title>
+<style>
+  html,body{
+    margin:0;padding:0;
+    background:#0b0c0b;
+    overflow:hidden;
+    scrollbar-width:none;
+  }
+  html::-webkit-scrollbar{display:none}
+  body{width:390px;height:844px}
+  iframe{
+    display:block;
+    width:390px;height:844px;
+    border:0;
+    background:#03100F;
+  }
+</style>
+</head>
+<body>
+  <iframe id="f" title="act01 study mobile"></iframe>
+  <script>
+    /* 截图工装：把查询参数原样传给真正的 lab，iframe 内就是 390×844 视口。 */
+    var q = new URLSearchParams(location.search);
+    var f = document.getElementById('f');
+    f.src = 'index.html' + (q.toString() ? '?' + q.toString() : '');
+  </script>
+</body>
+</html>

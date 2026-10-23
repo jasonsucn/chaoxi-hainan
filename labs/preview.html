@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LAB PREVIEW</title>
+<style>
+  html,body{margin:0;background:#141514;color:#8a857c;font-family:Consolas,monospace}
+  .wrap{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px}
+  .label{font-size:9px;letter-spacing:.2em;color:#6f6a62}
+  .frame{overflow:hidden;background:#03100f;border:1px solid #2a2b28;box-shadow:0 0 40px rgba(0,0,0,.4)}
+  iframe{border:0;display:block;transform-origin:0 0}
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="label" id="label">ACT LAB</div>
+    <div class="frame" id="frame"></div>
+  </div>
+  <script>
+    var q = new URLSearchParams(location.search);
+    var src = q.get('src') || 'act-template';
+    var p = q.get('p') || '0.55';
+    var w = parseInt(q.get('w') || '390', 10);
+    var h = parseInt(q.get('h') || '844', 10);
+    var maxW = Math.min(window.innerWidth - 60, 1100);
+    var maxH = window.innerHeight - 100;
+    var scale = Math.min(1, maxW / w, maxH / h);
+    var frame = document.getElementById('frame');
+    frame.style.width = Math.round(w * scale) + 'px';
+    frame.style.height = Math.round(h * scale) + 'px';
+    var f = document.createElement('iframe');
+    f.width = w; f.height = h;
+    f.style.transform = 'scale(' + scale + ')';
+    f.style.width = w + 'px'; f.style.height = h + 'px';
+    f.src = src + '/index.html?p=' + encodeURIComponent(p);
+    frame.appendChild(f);
+    document.getElementById('label').textContent =
+      src.toUpperCase() + ' · ' + w + '×' + h + ' · p=' + p + ' · ' + Math.round(scale * 100) + '%';
+  </script>
+</body>
+</html>

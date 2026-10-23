@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#03100F">
+<meta name="description" content="潮汐书 · 海南 / 03 珊瑚 —— 材质研究 lab">
+<title>03 珊瑚 · 潮汐书 LAB</title>
+<link rel="stylesheet" href="lab.css?v=21">
+</head>
+<body>
+
+  <div id="stage"><canvas id="scene" aria-hidden="true"></canvas></div>
+
+  <div class="sr-only">
+    <h1>03 珊瑚 · 潮汐书 · 海南</h1>
+    <p>夜里，珊瑚下雪。</p>
+    <p>珊瑚把卵吐进水里，像一场很慢的雪。把光停住两秒，它才开。别急着移开。</p>
+  </div>
+
+  <div id="hud">
+
+    <header class="top">
+      <div class="brand" aria-label="潮汐书 · 海南">
+        <span class="seal" aria-hidden="true">珊</span>
+        <span class="brand-copy">
+          <span class="cn">潮汐书 · 海南</span>
+          <span class="en">HAINAN · THE TIDE BOOK</span>
+        </span>
+      </div>
+      <div class="tools">
+        <span class="act">
+          <span class="num">03</span>
+          <span class="name">珊瑚</span>
+          <span class="en">CORAL</span>
+        </span>
+        <span class="vrule" aria-hidden="true"></span>
+        <span class="idx">R0 · 材质研究</span>
+      </div>
+    </header>
+
+    <div class="gauge" id="gauge" role="group" aria-label="潮位">
+      <span class="gtrack" aria-hidden="true"></span>
+      <button class="gstop" type="button" data-stop="0" aria-label="满潮" aria-pressed="true">
+        <span class="glabel">满潮</span><span class="gtick" aria-hidden="true"></span>
+      </button>
+      <button class="gstop" type="button" data-stop="0.34" style="top:34%" aria-label="半潮" aria-pressed="false">
+        <span class="glabel">半潮</span><span class="gtick" aria-hidden="true"></span>
+      </button>
+      <button class="gstop" type="button" data-stop="0.68" style="top:68%" aria-label="低潮" aria-pressed="false">
+        <span class="glabel">低潮</span><span class="gtick" aria-hidden="true"></span>
+      </button>
+      <button class="gstop" type="button" data-stop="0.92" style="top:92%" aria-label="见底" aria-pressed="false">
+        <span class="glabel">见底</span><span class="gtick" aria-hidden="true"></span>
+      </button>
+      <div class="gmark" id="gmark" aria-hidden="true">
+        <span class="gdot"></span>
+        <span class="gval" id="gval">+2.1</span>
+      </div>
+    </div>
+
+    <footer class="bottom">
+      <div class="readout">
+        <span class="pulse" aria-hidden="true"></span>
+        <div class="ro-copy">
+          <div class="state">
+            <span id="stateCN">满潮</span>
+            <span id="stateEN">HIGH WATER</span>
+          </div>
+          <div class="level">
+            <span id="level">+2.1 m</span>
+            <span class="sep">/</span>
+            <span id="clock">21:48</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hint" id="hint">
+        <span class="rail" aria-hidden="true"></span>
+        <span class="txt">移光找珊瑚；停住两秒</span>
+        <span class="en">MOVE THE LIGHT — HOLD STILL</span>
+      </div>
+
+      <div class="bottom-right">
+        <button class="replay" id="replay" type="button">回潮 <span aria-hidden="true">↻</span></button>
+      </div>
+    </footer>
+
+  </div>
+
+  <div class="dbg" id="dbg" hidden></div>
+
+  <script>
+    window.ACTS = window.ACTS || {
+      list: {},
+      register: function (id, mod) { this.list[id] = mod; }
+    };
+  </script>
+  <script src="act03-coral.js?v=21"></script>
+  <script src="lab.js?v=21"></script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>ACT LAB · 潮汐书</title>
+<link rel="stylesheet" href="lab.css">
+</head>
+<body>
+
+  <div id="stage"><canvas id="scene"></canvas></div>
+
+  <div id="hud">
+    <div class="hud-top">
+      <span class="lab-mark">ACT LAB</span>
+      <span id="act-name">—</span>
+      <span id="act-en" class="micro">—</span>
+    </div>
+    <div class="hud-bottom">
+      <div class="tide">
+        <span class="micro">潮位 / TIDE</span>
+        <input id="p" type="range" min="0" max="1" step="0.001" value="0.55" aria-label="潮位">
+        <span id="pval" class="mono">0.55</span>
+      </div>
+      <div class="hint micro">拖动滑杆 = 水线 · 按住 = 热</div>
+    </div>
+  </div>
+
+  <script>
+    window.ACTS = window.ACTS || { list: {}, register: function (id, mod) { this.list[id] = mod; } };
+  </script>
+  <script src="act.js"></script>
+  <script src="lab.js"></script>
+</body>
+</html>

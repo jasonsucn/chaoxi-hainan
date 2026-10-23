@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#03100F">
+<meta name="description" content="01 玄武 · 材质研究：玄武岩、黑沙与珊瑚石灰墙。按住石头，看它慢慢变热。">
+<title>01 玄武 · 材质研究 / 潮汐书 · 海南</title>
+<link rel="stylesheet" href="study.css?v=1023n">
+</head>
+<body>
+
+<div id="stage">
+
+  <canvas id="sea" aria-hidden="true"></canvas>
+  <canvas id="art" aria-hidden="true"></canvas>
+
+  <div class="sr-only">
+    <h1>01 玄武 · 材质研究</h1>
+    <p>玄武岩、黑沙与珊瑚石灰墙的潮间带研究。按住石头给它升温，松手让它冷却。拖动画面或使用滚轮改变潮位。</p>
+    <p>水线以上是墨，水线以下是骨白与折射。可用的三个潮位：满潮、半潮、见底。</p>
+    <p id="live" aria-live="polite"></p>
+  </div>
+
+  <div class="ui">
+
+    <header class="top">
+      <div class="brand">
+        <span class="seal" aria-hidden="true">玄</span>
+        <span class="brand-copy">
+          <span class="cn">海南</span>
+          <span class="en">HAINAN · THE TIDE BOOK</span>
+        </span>
+      </div>
+
+      <div class="top-right">
+        <div class="meta">
+          <span class="idx">01 / 05</span>
+          <span class="vrule" aria-hidden="true"></span>
+          <span class="study">R0 · 材质研究</span>
+        </div>
+        <div class="tides" id="tides" role="group" aria-label="选择潮位">
+          <button type="button" data-tide="0.03" aria-label="满潮">满潮</button>
+          <button type="button" data-tide="0.55" aria-label="半潮">半潮</button>
+          <button type="button" data-tide="0.92" aria-label="见底">见底</button>
+        </div>
+      </div>
+    </header>
+
+    <div class="gauge" id="gauge" aria-hidden="true">
+      <div class="gtrack"></div>
+      <div class="gmark" id="gmark">
+        <span class="gdot"></span>
+        <span class="gval" id="gval">+1.8</span>
+      </div>
+    </div>
+
+    <div class="hint" id="hint">
+      <span class="rail" aria-hidden="true"></span>
+      <span class="txt">按住石头，看它慢慢变热</span>
+      <span class="en">PRESS &amp; HOLD THE STONE · RELEASE TO COOL</span>
+    </div>
+
+    <footer class="bottom">
+      <div class="readout">
+        <div class="ro-state">
+          <span class="cn" id="stateCN">半潮</span>
+          <span class="en" id="stateEN">HALF TIDE</span>
+        </div>
+        <div class="ro-level">
+          <span class="v" id="level">+0.2 m</span>
+          <span class="sep" aria-hidden="true">/</span>
+          <span class="note">海口 · 石山</span>
+        </div>
+      </div>
+
+      <div class="thermal" id="thermal">
+        <div class="th-top">
+          <span class="th-label">石温</span>
+          <span class="th-val" id="temp">23°C</span>
+          <span class="th-dot" id="heatDot" aria-hidden="true"></span>
+        </div>
+        <div class="th-state" id="heatState">冷 · 按住石头</div>
+      </div>
+    </footer>
+
+    <button class="stone-hit" id="stone" type="button"
+      aria-label="按住石头，给它升温；松手让它冷却"
+      aria-describedby="hint"></button>
+
+  </div>
+
+  <div class="hud" id="hud" aria-hidden="true"></div>
+</div>
+
+<noscript>
+  <div class="noscript">《潮汐书》需要 JavaScript 才能退潮。</div>
+</noscript>
+
+<script src="js/study-sea.js?v=1023n"></script>
+<script src="js/study-scene.js?v=1023n"></script>
+<script src="js/study-lab.js?v=1023n"></script>
+</body>
+</html>
